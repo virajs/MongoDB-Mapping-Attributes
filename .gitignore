@@ -4,3 +4,9 @@ obj
 
 # mstest test results
 TestResults
+/packages
+/_ReSharper.MongoDB.Driver.Extensions
+/_ReSharper.MongoDB.Driver.Extensions.Mapping
+*.user
+/MongoDB.Driver.Extensions.Mapping.suo
+/MongoDB.Driver.Extensions.Mapping.suo
