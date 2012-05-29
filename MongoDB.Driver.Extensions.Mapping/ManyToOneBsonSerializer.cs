@@ -9,8 +9,8 @@ namespace MongoDB.Driver.Extensions.Mapping
 {
     public sealed class ManyToOneBsonSerializer : BaseBsonSerializer
     {
-        public ManyToOneBsonSerializer(Type documentType, IBsonSerializer serializer, IMongoDBProvider mongoDbProvider)
-            : base(documentType, serializer, mongoDbProvider)
+        public ManyToOneBsonSerializer(Type documentType, IBsonSerializer serializer, IMongoDbProvider mongoDbProvider, IIdentifierFinder identifierFinder) 
+            : base(documentType, serializer, mongoDbProvider, identifierFinder)
         {
 
         }
@@ -39,7 +39,7 @@ namespace MongoDB.Driver.Extensions.Mapping
             }
             else
             {
-                ObjectIdSerializer.Instance.Serialize(bsonWriter, nominalType, ((IIdentifier)value).Id, options);
+                ObjectIdSerializer.Instance.Serialize(bsonWriter, nominalType, IdentifierFinder.GetId(value), options);
             }
         }
     }

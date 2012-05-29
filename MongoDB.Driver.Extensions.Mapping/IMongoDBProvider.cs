@@ -2,7 +2,7 @@
 
 namespace MongoDB.Driver.Extensions.Mapping
 {
-    public interface IMongoDBProvider
+    public interface IMongoDbProvider
     {
         MongoDatabase Database { get; }
     }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using MongoDB.Driver.Extensions.Mapping.Tests.Entities;
+﻿using System.Reflection;
+using MongoDB.Driver.Extensions.Mapping.Tests.Core;
+using MongoDB.Driver.Extensions.Mapping.Tests.Core.Entities;
 using NUnit.Framework;
 
 namespace MongoDB.Driver.Extensions.Mapping.Tests
@@ -10,7 +8,9 @@ namespace MongoDB.Driver.Extensions.Mapping.Tests
     [SetUpFixture]
     public class TestSetupFixture
     {
-        public static DefaultMongoDBProvider DefaultMongoDbProvider { get; private set; }
+        public static DefaultMongoDbProvider DefaultMongoDbProvider { get; private set; }
+
+        public static DefaultIdentifierFinder DefaultIdentifierFinder { get; private set; }
 
         internal static User AdminUser { get; private set; }
 
@@ -18,13 +18,14 @@ namespace MongoDB.Driver.Extensions.Mapping.Tests
 
         public TestSetupFixture()
         {
-            DefaultMongoDbProvider = new DefaultMongoDBProvider();
+            DefaultMongoDbProvider = new DefaultMongoDbProvider();
+            DefaultIdentifierFinder = new DefaultIdentifierFinder();
         }
 
         [SetUp]
         public void Setup()
         {
-            var mapper = new Mapper(DefaultMongoDbProvider);
+            var mapper = new Mapper(DefaultMongoDbProvider, DefaultIdentifierFinder);
             mapper.Map(Assembly.GetExecutingAssembly());
 
             var adminUser = new User()

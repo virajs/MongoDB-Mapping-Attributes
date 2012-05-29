@@ -8,10 +8,13 @@ namespace MongoDB.Driver.Extensions.Mapping
 {
     public sealed class Mapper
     {
-        private readonly IMongoDBProvider _mongoDbProvider;
+        private readonly IMongoDbProvider _mongoDbProvider;
 
-        public Mapper(IMongoDBProvider mongoDbProvider)
+        private readonly IIdentifierFinder _entityLoader;
+
+        public Mapper(IMongoDbProvider mongoDbProvider, IIdentifierFinder entityLoader)
         {
+            _entityLoader = entityLoader;
             _mongoDbProvider = mongoDbProvider;
         }
 
@@ -19,8 +22,8 @@ namespace MongoDB.Driver.Extensions.Mapping
         {
             IList<Type> mappedEntityTypes =
                 assembly.GetTypes()
-                    .Where(p => typeof(IIdentifier).IsAssignableFrom(p) && !p.IsInterface && !p.IsValueType && !p.IsAbstract)
-                        .ToList();
+                    .Where(p => Attribute.IsDefined(p, typeof (ClassAttribute)) && !p.IsInterface && !p.IsValueType && !p.IsAbstract)
+                    .ToList();
             foreach (var mappedEntityType in mappedEntityTypes)
             {
                 Map(mappedEntityType);
@@ -38,8 +41,8 @@ namespace MongoDB.Driver.Extensions.Mapping
 
             foreach (var property in properties)
             {
-                RegisterCustomSerializer(property, typeof (ManyToOne), documentType);
-                RegisterCustomSerializer(property, typeof(OneToMany), documentType);
+                RegisterCustomSerializer(property, typeof (ManyToOneAttribute), documentType);
+                RegisterCustomSerializer(property, typeof(OneToManyAttribute), documentType);
             }
         }
 
@@ -48,14 +51,14 @@ namespace MongoDB.Driver.Extensions.Mapping
             var mappingAttrbs = property.GetCustomAttributes(attrbuteType, false);
             if(mappingAttrbs.Length == 1)
             {
-                var mappingAttribute = mappingAttrbs[0] as MappingAttribute;
+                var mappingAttribute = mappingAttrbs[0] as BaseMappingAttribute;
                 if(mappingAttribute != null)
                 {
                     var serializer = BsonSerializer.LookupSerializer(documentType);
 
                     BsonClassMap.LookupClassMap(documentType)
                             .GetMemberMap(property.Name)
-                            .SetSerializer(mappingAttribute.GetBsonSerializer(serializer, _mongoDbProvider));
+                            .SetSerializer(mappingAttribute.GetBsonSerializer(serializer, _mongoDbProvider, _entityLoader));
                 }
             }
         }

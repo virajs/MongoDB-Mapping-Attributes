@@ -49,12 +49,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseBsonSerializer.cs" />
-    <Compile Include="IIdentifier.cs" />
-    <Compile Include="IMongoDBProvider.cs" />
-    <Compile Include="ManyToOne.cs" />
+    <Compile Include="BaseMappingAttribute.cs" />
+    <Compile Include="ClassAttribute.cs" />
+    <Compile Include="IIdentifierFinder.cs" />
+    <Compile Include="IMongoDbProvider.cs" />
+    <Compile Include="ManyToOneAttribute.cs" />
     <Compile Include="ManyToOneBsonSerializer.cs" />
     <Compile Include="Mapper.cs" />
-    <Compile Include="OneToMany.cs" />
+    <Compile Include="OneToManyAttribute.cs" />
     <Compile Include="OneToManyBsonSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -8,12 +8,15 @@ namespace MongoDB.Driver.Extensions.Mapping
     {
         protected Type DocumentType { get; private set; }
 
-        protected IMongoDBProvider MongoDbProvider { get; private set; }
+        protected IMongoDbProvider MongoDbProvider { get; private set; }
 
         protected IBsonSerializer Serializer { get; private set; }
 
-        protected BaseBsonSerializer(Type documentType, IBsonSerializer serializer, IMongoDBProvider mongoDbProvider)
+        protected IIdentifierFinder IdentifierFinder { get; private set; }
+
+        protected BaseBsonSerializer(Type documentType, IBsonSerializer serializer, IMongoDbProvider mongoDbProvider, IIdentifierFinder identifierFinder)
         {
+            IdentifierFinder = identifierFinder;
             DocumentType = documentType;
             Serializer = serializer;
             MongoDbProvider = mongoDbProvider;

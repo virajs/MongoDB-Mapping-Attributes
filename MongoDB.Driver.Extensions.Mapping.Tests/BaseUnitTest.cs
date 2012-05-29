@@ -1,4 +1,4 @@
-﻿using MongoDB.Driver.Extensions.Mapping.Tests.Entities;
+﻿using MongoDB.Driver.Extensions.Mapping.Tests.Core.Entities;
 
 namespace MongoDB.Driver.Extensions.Mapping.Tests
 {
@@ -20,7 +20,7 @@ namespace MongoDB.Driver.Extensions.Mapping.Tests
             }
         }
 
-        protected IMongoDBProvider MongoDbProvider { get; private set; }
+        protected IMongoDbProvider MongoDbProvider { get; private set; }
 
         protected void Save<T>(T document)
             where T : class 

@@ -7,4 +7,5 @@ namespace MongoDB.Driver.Extensions.Mapping
     {
         ObjectId Id { get; set; }
     }
+
 }

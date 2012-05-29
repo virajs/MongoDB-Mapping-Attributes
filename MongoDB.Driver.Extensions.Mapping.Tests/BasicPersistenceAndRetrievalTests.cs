@@ -1,5 +1,5 @@
 ﻿using MongoDB.Driver.Builders;
-using MongoDB.Driver.Extensions.Mapping.Tests.Entities;
+using MongoDB.Driver.Extensions.Mapping.Tests.Core.Entities;
 using NUnit.Framework;
 
 namespace MongoDB.Driver.Extensions.Mapping.Tests

@@ -1,5 +1,5 @@
 ﻿
-namespace MongoDB.Driver.Extensions.Mapping.Tests.Entities
+namespace MongoDB.Driver.Extensions.Mapping.Tests.Core.Entities
 {
     public class OrderLine : Entity
     {

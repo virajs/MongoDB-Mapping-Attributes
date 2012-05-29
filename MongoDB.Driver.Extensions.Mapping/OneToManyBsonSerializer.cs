@@ -11,8 +11,8 @@ namespace MongoDB.Driver.Extensions.Mapping
 {
     public sealed class OneToManyBsonSerializer : BaseBsonSerializer
     {
-        public OneToManyBsonSerializer(Type documentType, IBsonSerializer serializer, IMongoDBProvider mongoDbProvider)
-            : base(documentType, serializer, mongoDbProvider)
+        public OneToManyBsonSerializer(Type documentType, IBsonSerializer serializer, IMongoDbProvider mongoDbProvider, IIdentifierFinder identifierFinder) 
+            : base(documentType, serializer, mongoDbProvider, identifierFinder)
         {
 
         }
@@ -56,12 +56,12 @@ namespace MongoDB.Driver.Extensions.Mapping
             bsonWriter.WriteStartArray();
             if (value != null)
             {
-                var values = value as IEnumerable<IIdentifier>;
-                if(values != null)
+                var array = value as IEnumerable;
+                if (array != null)
                 {
-                    foreach (object id in values.Select(p => p.Id).ToList())
+                    foreach (var id in from object arrayItem in array select IdentifierFinder.GetId(arrayItem))
                     {
-                        BsonSerializer.Serialize(bsonWriter, typeof(ObjectId), id);
+                        BsonSerializer.Serialize(bsonWriter, id.GetType(), id);
                     }
                 }
             }
