@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MongoDB.Driver.Extensions.Mapping.Attributes;
 
 namespace MongoDB.Driver.Extensions.Mapping.Tests.Core.Entities
 {
@@ -9,7 +10,7 @@ namespace MongoDB.Driver.Extensions.Mapping.Tests.Core.Entities
         [OneToMany(typeof(Order))]
         public IList<Order> Orders { get; set; }
 
-        [ManyToOneAttribute(typeof(User))]
+        [ManyToOne(typeof(User))]
         public User CreatedBy { get; set; }
 
         public Customer()

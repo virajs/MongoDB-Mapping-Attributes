@@ -1,7 +1,8 @@
 ﻿using System;
 using MongoDB.Bson.Serialization;
+using MongoDB.Driver.Extensions.Mapping.Serializers;
 
-namespace MongoDB.Driver.Extensions.Mapping
+namespace MongoDB.Driver.Extensions.Mapping.Attributes
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public sealed class ManyToOneAttribute : BaseMappingAttribute

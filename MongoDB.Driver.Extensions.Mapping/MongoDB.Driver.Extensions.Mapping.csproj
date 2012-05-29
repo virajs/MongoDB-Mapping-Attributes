@@ -48,16 +48,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseBsonSerializer.cs" />
-    <Compile Include="BaseMappingAttribute.cs" />
-    <Compile Include="ClassAttribute.cs" />
-    <Compile Include="IIdentifierFinder.cs" />
-    <Compile Include="IMongoDbProvider.cs" />
-    <Compile Include="ManyToOneAttribute.cs" />
-    <Compile Include="ManyToOneBsonSerializer.cs" />
+    <Compile Include="Serializers\BaseBsonSerializer.cs" />
+    <Compile Include="Attributes\BaseMappingAttribute.cs" />
+    <Compile Include="Attributes\ClassAttribute.cs" />
+    <Compile Include="Common\IIdentifierFinder.cs" />
+    <Compile Include="Common\IMongoDbProvider.cs" />
+    <Compile Include="Attributes\ManyToOneAttribute.cs" />
+    <Compile Include="Serializers\ManyToOneBsonSerializer.cs" />
     <Compile Include="Mapper.cs" />
-    <Compile Include="OneToManyAttribute.cs" />
-    <Compile Include="OneToManyBsonSerializer.cs" />
+    <Compile Include="Attributes\OneToManyAttribute.cs" />
+    <Compile Include="Serializers\OneToManyBsonSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

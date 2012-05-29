@@ -1,7 +1,7 @@
 ﻿using System;
 using MongoDB.Bson.Serialization;
 
-namespace MongoDB.Driver.Extensions.Mapping
+namespace MongoDB.Driver.Extensions.Mapping.Attributes
 {
     public abstract class BaseMappingAttribute : Attribute
     {

@@ -2,9 +2,9 @@
 using MongoDB.Bson.IO;
 using MongoDB.Bson.Serialization;
 
-namespace MongoDB.Driver.Extensions.Mapping
+namespace MongoDB.Driver.Extensions.Mapping.Serializers
 {
-    public abstract class BaseBsonSerializer : IBsonSerializer
+    internal abstract class BaseBsonSerializer : IBsonSerializer
     {
         protected Type DocumentType { get; private set; }
 

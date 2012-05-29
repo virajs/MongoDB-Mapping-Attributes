@@ -5,9 +5,9 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver.Builders;
 
-namespace MongoDB.Driver.Extensions.Mapping
+namespace MongoDB.Driver.Extensions.Mapping.Serializers
 {
-    public sealed class ManyToOneBsonSerializer : BaseBsonSerializer
+    internal sealed class ManyToOneBsonSerializer : BaseBsonSerializer
     {
         public ManyToOneBsonSerializer(Type documentType, IBsonSerializer serializer, IMongoDbProvider mongoDbProvider, IIdentifierFinder identifierFinder) 
             : base(documentType, serializer, mongoDbProvider, identifierFinder)
